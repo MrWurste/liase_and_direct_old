@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:fragment="head_part">
+    <meta charset="UTF-8">
+    <link th:href="@{/css/reset.css}" rel="stylesheet"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet"/>
+  </div>
+    <meta charset="UTF-8">
+    <title>samples</title>
+</head>
+<body>
+<header th:fragment="menu">
+  <nav>
+    <ul>
+      <li>
+        <a href="/#">Home</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+</body>
+</html>

@@ -1,0 +1,28 @@
+header {
+    height: max-content + 5px;
+    margin-bottom: 10px;
+}
+header > nav > ul {
+    background-color: orangered;
+    display: flex;
+    list-style: none;
+}
+header > nav > ul > li {
+    align-content: center;
+    margin: auto;
+    width: -95%;
+    padding: 5px;
+}
+header > nav > ul > li > a {
+        text-decoration: none;
+        color:lavender;
+        font-size: 20px;
+        text-shadow:
+        -1px -1px 0 #000,
+        1px -1px 0 #000,
+        -1px 1px 0 #000,
+        1px 1px 0 #000;
+}
+header > nav > ul > li > a:hover {
+    color:red;
+}

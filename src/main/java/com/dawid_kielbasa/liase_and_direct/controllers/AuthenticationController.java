@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/login")
 @RequiredArgsConstructor
@@ -24,11 +25,13 @@ public class AuthenticationController {
     }
     @PostMapping("/authenticate")
     public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+        System.out.println("Frontend tu był");
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 authenticationRequest.getEmail(),
                 authenticationRequest.getPassword()));
         final UserDetails user = userDetailsService.loadUserByUsername(authenticationRequest.getEmail());
         if (user != null) {
+            System.out.println("Coś się zalogowało");
             return ResponseEntity.ok(filterUtils.generateToken(user));
         } else {
             return ResponseEntity.status(404).body("User not found");

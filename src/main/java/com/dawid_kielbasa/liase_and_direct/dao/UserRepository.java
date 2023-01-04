@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 @Repository
-public class UserDao {
+public class UserRepository {
 
     private final static List<UserDetails> APPLICATION_USERS = Arrays.asList(
             new User("username1","password1", Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"))),

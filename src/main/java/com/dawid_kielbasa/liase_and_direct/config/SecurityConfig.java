@@ -13,6 +13,7 @@ public class SecurityConfig {
 
     private final AuthFilter authFilter;
     private final SecurityUtils securityUtils;
+    //TODO Custom Auth Provider
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -26,7 +27,7 @@ public class SecurityConfig {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .authenticationProvider(securityUtils.authenticationProvider())
+                //.authenticationProvider(securityUtils.authenticationProvider())
                 .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

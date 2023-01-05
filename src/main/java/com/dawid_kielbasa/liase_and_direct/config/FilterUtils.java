@@ -1,5 +1,6 @@
 package com.dawid_kielbasa.liase_and_direct.config;
 
+import com.dawid_kielbasa.liase_and_direct.interfaces.AppUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -17,6 +18,9 @@ public class FilterUtils {
     private String secretKey = "secret";
 
     public String extractUsername(String token) {
+        return extractClaim(token, Claims::getIssuer);
+    }
+    public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
     public Date extractExpiration(String token) {
@@ -32,11 +36,11 @@ public class FilterUtils {
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(AppUserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
         return createToken(claims, userDetails);
     }
-    private String createToken(Map<String, Object> claims, UserDetails userDetails) {
+    private String createToken(Map<String, Object> claims, AppUserDetails userDetails) {
         return Jwts
                 .builder()
                 .setClaims(claims)
@@ -46,7 +50,7 @@ public class FilterUtils {
                 .setExpiration(new Date(System.currentTimeMillis()+ TimeUnit.HOURS.toMillis(1)))
                 .signWith(SignatureAlgorithm.HS256, secretKey).compact();
     }
-    public Boolean validateToken(String token, UserDetails userDetails) {
+    public Boolean validateToken(String token, AppUserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }

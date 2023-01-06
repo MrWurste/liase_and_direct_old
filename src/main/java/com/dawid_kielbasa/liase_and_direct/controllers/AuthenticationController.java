@@ -4,14 +4,18 @@ import com.dawid_kielbasa.liase_and_direct.config.FilterUtils;
 import com.dawid_kielbasa.liase_and_direct.dto.AuthenticationRequest;
 import com.dawid_kielbasa.liase_and_direct.interfaces.AppUserDetails;
 import com.dawid_kielbasa.liase_and_direct.interfaces.AppUserDetailsService;
+import com.dawid_kielbasa.liase_and_direct.models.AppUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
+/**
+ * Controller class with API endpoints. For now only for authentication and registry user. I didn't have time for more.
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("/login")
@@ -37,5 +41,20 @@ public class AuthenticationController {
         } else {
             return ResponseEntity.status(404).body("User not found");
         }
+    }
+    //TODO Prevent to register with the same email
+    @PostMapping("/register")
+    public ResponseEntity<String> register(@RequestBody AuthenticationRequest registerRequest) {
+        System.out.println( registerRequest.getEmail());
+        //final AppUserDetails email = userDetailsService.loadUserByEmail(registerRequest.getEmail());
+
+        //if (email != null) {
+        //    ResponseEntity.status(400).body("Account already existed");
+       // } else {
+            final AppUserDetails user = new AppUser(registerRequest.getUsername(), registerRequest.getEmail(), registerRequest.getPassword(), Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")));
+        System.out.println(user.getUsername() + " " + user.getEmail() + " " + user.getPassword() + " " + user.getAuthorities());
+            userDetailsService.addUser(user);
+        //}
+        return ResponseEntity.ok("registered");
     }
 }

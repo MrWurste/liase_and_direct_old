@@ -20,6 +20,13 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 import static org.springframework.http.HttpHeaders.AUTHORIZATION;
+
+/**
+ * This AuthFilter class get credentials (email - unique in database, password) and send them to repository, to check if the user exists in this database.
+ * If the user is found filter use FilterUtils class to generate token from user data from database and send token to frontend.
+ * If frontend send back token, the access is granted without login. Token has saved expire time. If expired token is sended from frontend, the backend crash.
+ * I didn't have time for handling this expired token. Login to app with token works with Postman, when created token is senden as Bearer token in Header.
+ */
 @Component
 @RequiredArgsConstructor
 public class AuthFilter extends OncePerRequestFilter {

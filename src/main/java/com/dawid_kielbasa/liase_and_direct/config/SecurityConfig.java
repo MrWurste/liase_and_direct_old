@@ -7,6 +7,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+/**
+ * This class provide custom authentication method. With User model that has two String variables (username and password) and Collection of authorities, Authentication Provider
+ * from spring boot secutity framework works fine. But with custom AppUser model that has additional one String variable (email), authentication provider won't work, Exception throw.
+ */
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {

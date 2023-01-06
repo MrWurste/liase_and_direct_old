@@ -9,6 +9,9 @@ import org.springframework.util.Assert;
 import java.io.Serializable;
 import java.util.*;
 
+/**
+ * AppUser model, just copied User class from secutity framework and added email String value. I don't have time for implementing features that use boolean arguments in this class.
+ */
 public class AppUser implements AppUserDetails {
     private static final long serialVersionUID = 570L;
     private static final Log logger = LogFactory.getLog(AppUser.class);

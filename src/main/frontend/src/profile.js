@@ -4,7 +4,7 @@ class Profile extends Component {
   render() {
     return (
       <div>
-        <h2>Directory is it</h2>
+        <h2>My profile</h2>
       </div>
     );
   }

@@ -13,6 +13,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.Map;
 
+/**
+ * Utility class for AuthFiler class. Here are methods witch AuthFilter uses, exported to second class to mantain readibility of code.
+ * Token is generated with secretKey bellow.
+ */
 @Component
 public class FilterUtils {
     private String secretKey = "secret";

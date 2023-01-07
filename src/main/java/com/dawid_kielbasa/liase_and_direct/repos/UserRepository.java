@@ -1,4 +1,4 @@
-package com.dawid_kielbasa.liase_and_direct.dao;
+package com.dawid_kielbasa.liase_and_direct.repos;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -10,6 +10,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Repository class used with User model from spring security framework.
+ */
+@Deprecated
 @Repository
 public class UserRepository {
 

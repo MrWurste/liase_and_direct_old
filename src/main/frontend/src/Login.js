@@ -4,6 +4,7 @@ class Login extends Component {
     //contructor,method,accesor,property
     //loginUser(credentials) -> POST to backend (email, password)
     //response from loginUser <- Token
+    //TODO Use token
     constructor(props) {
         super(props);
         this.state = {
@@ -29,12 +30,15 @@ class Login extends Component {
             redirect: 'follow',
             })
             .then(response => response.json)
+            //.then(response => response.text())
+            //.then(result => console.log(result))
         }
         async handleSubmit() {
             const response = await this.logIn(this.state);
-            if('accessToken' in response) {
+            //if('accessToken' in response) {
                 localStorage.setItem('accesstoken', response['accessToken']);
-            }
+                //localStorage.setItem('accesstoken', 'yolo');
+            //}
         }
 
   render() {

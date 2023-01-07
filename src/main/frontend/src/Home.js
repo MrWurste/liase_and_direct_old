@@ -5,7 +5,7 @@ class Home extends Component {
     return (
       <div>
         <h2>axzcdhjuv asz gydfsiuy gilu</h2>
-        <h3>Home, fkn home</h3>
+        <h3>Home, sweet home</h3>
       </div>
     );
   }
